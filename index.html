@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Angel Alina</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital@1&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Heartbeat Animation */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .pulse { animation: heartbeat 1.5s infinite; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Mobile Font Scaling */
+        @media (max-width: 600px) {
+            .main-title { font-size: 3.5rem !important; }
+            .sub-title { font-size: 2.2rem !important; }
+            .message-text { font-size: 1.1rem !important; line-height: 2 !important; }
+            .date-header { letter-spacing: 8px !important; }
+            .content-padding { padding: 60px 25px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="birthday-wrapper" style="background: radial-gradient(circle, #fffcf9 0%, #f7f0e8 100%); min-height: 100vh; font-family: 'Georgia', serif; text-align: center; color: #2c1e1f; overflow-x: hidden;">
+
+    <div id="gift-overlay" onclick="revealSurprise()" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fffcf9; z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: all 2.5s ease-in-out;">
+        
+        <div class="pulse" style="width: 50px; height: 50px; position: relative; margin-bottom: 30px;">
+            <div style="position: absolute; width: 100%; height: 100%; border: 1px solid #d4af37; transform: rotate(45deg);"></div>
+            <div style="position: absolute; top: 12px; left: 12px; font-size: 25px; color: #d4af37;">❤</div>
+        </div>
+
+        <h2 style="font-weight: 300; font-style: italic; color: #9a8c81; letter-spacing: 5px; font-size: 0.8rem; text-transform: uppercase;">A gift for Alina</h2>
+        <p style="font-size: 0.55rem; color: #d1cfcd; text-transform: uppercase; letter-spacing: 4px; margin-top: 20px;">( Touch her heart )</p>
+    </div>
+
+    <div id="main-content" class="content-padding" style="opacity: 0; transition: opacity 5s ease; padding: 100px 20px;">
+        <header style="margin-bottom: 40px;">
+            <p class="date-header" style="text-transform: uppercase; letter-spacing: 15px; font-size: 0.8rem; color: #bcaaa4; margin-bottom: 30px;">XVIII . II</p>
+            
+            <div style="margin-bottom: 15px;">
+                <h2 class="sub-title" style="font-family: 'Alex Brush', cursive; font-size: 3.5rem; font-weight: 400; color: #d4af37; margin: 0; line-height: 1;">Happy Birthday</h2>
+                <h1 class="main-title" style="font-family: 'Alex Brush', cursive; font-size: 6.5rem; font-weight: 400; margin: 0; color: #1a1a1a;">My Angel Alina</h1>
+            </div>
+            
+            <div style="width: 25px; height: 1px; background: #d4af37; margin: 30px auto;"></div>
+        </header>
+
+        <section style="max-width: 650px; margin: 0 auto;">
+            <p style="font-style: italic; margin-bottom: 35px; color: #4e3b3d; font-family: 'Playfair Display', serif; font-size: 1.2rem;">
+                "Duniya ki har khushi aapke qadmon mein ho."
+            </p>
+            
+            <p class="message-text" style="font-size: 1.2rem; font-style: normal; color: #5a4a4b; font-weight: 300; letter-spacing: 0.5px; line-height: 2.2;">
+                Alina, aaj ka din us roshni aur haseen ehsaas ka jashn hai jo aap meri zindagi mein laayi hain. 
+                Aapki rooh bohat khubsurat hai, aapka dil sonay jaisa hai, aur main bohat khush-naseeb hoon ke aap meri zindagi mein hain.
+                <br><br>
+                Khuda kare ke aapka ye din utna hi haseen aur khaas ho jitni aap mere liye hain.
+            </p>
+
+            <div style="margin-top: 60px;">
+                <button onclick="showSecret()" id="note-btn" style="background: none; border: 1px solid #efdcdb; color: #9a8c81; padding: 12px 30px; cursor: pointer; font-family: serif; font-style: italic; border-radius: 30px; transition: all 0.5s; font-size: 0.9rem;">Mera paighaam parhein</button>
+                <p id="secret-note" style="display: none; margin-top: 40px; font-size: 1.3rem; color: #c5a059; font-style: italic; animation: fadeIn 2.5s ease-in;">
+                    "Waqt badalta rahega, magar mera dil hamesha aapka hi rahega."
+                </p>
+            </div>
+        </section>
+
+        <footer style="margin-top: 80px; padding-bottom: 40px;">
+            <span style="font-size: 1rem; color: #efdcdb; letter-spacing: 10px;">❤❤❤</span>
+        </footer>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+function revealSurprise() {
+    document.getElementById('gift-overlay').style.opacity = '0';
+    document.getElementById('gift-overlay').style.transform = 'scale(1.1)';
+    setTimeout(() => { document.getElementById('gift-overlay').style.display = 'none'; }, 2500);
+    document.getElementById('main-content').style.opacity = '1';
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const melody = [
+        {f:261.63, d:0.7}, {f:261.63, d:0.4}, {f:293.66, d:1.0}, {f:261.63, d:1.0}, {f:349.23, d:1.0}, {f:329.63, d:2.0}
+    ];
+    let time = audioCtx.currentTime;
+    melody.forEach(note => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine'; 
+        osc.frequency.setValueAtTime(note.f, time);
+        gain.gain.setValueAtTime(0.03, time);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + note.d);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(time); osc.stop(time + note.d);
+        time += note.d;
+    });
+
+    var end = Date.now() + (20 * 1000);
+    var colors = ['#d4af37', '#fdfaf9', '#decba4'];
+    (function frame() {
+        confetti({ particleCount: 1, startVelocity: 0, ticks: 500, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: colors, shapes: ['circle'], gravity: 0.08, scalar: 0.4, drift: Math.random() - 0.5 });
+        if (Date.now() < end) requestAnimationFrame(frame);
+    }());
+}
+
+function showSecret() {
+    document.getElementById('note-btn').style.display = 'none';
+    document.getElementById('secret-note').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
